@@ -1,0 +1,38 @@
+# ── Python / build artifacts ───────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ── Environments ───────────────────────────────────────────
+.venv/
+venv/
+env/
+.env
+
+# ── Editor / OS ────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ── Large / third-party assets (NOT redistributed) ─────────
+# Geneformer source + V2-104M weights → install separately (see README)
+/Geneformer/
+# scPerturb h5ad datasets → download (see README)
+/data/
+# Run-time caches (npz/arrow). Large intermediates are published on Zenodo;
+# only small curated CSVs/figures under results/ are tracked.
+/benchmark_output/
+*.npz
+*.loom
+*.pickle
+*.arrow
+
+# Allow curated small results (figures + key CSVs)
+!results/
+!results/**

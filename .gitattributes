@@ -1,0 +1,6 @@
+# Normalize text line endings to LF on commit (consistent cross-platform).
+* text=auto eol=lf
+
+# Binary assets: no EOL conversion, no textual diff.
+*.png binary
+*.pdf binary
