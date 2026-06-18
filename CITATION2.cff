@@ -1,0 +1,9 @@
+cff-version: 0.1.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: Qiu
+  given-names: Ru
+orcid: https://orcid.org/0009-0007-0021-7241
+title:isp-confound-toolkit: confound-aware diagnostics for foundation-model in-silico perturbation predictions
+version: v0.1.0
+date-released: 2026-06-18
