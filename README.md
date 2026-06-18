@@ -1,5 +1,7 @@
 # isp-confound-toolkit
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20743523.svg)](https://doi.org/10.5281/zenodo.20743523)
+
 **A confound-diagnostic toolkit for judging when to trust foundation-model in-silico perturbation predictions** — with Geneformer as a worked cautionary case.
 
 Single-cell foundation models (Geneformer, scGPT, …) are widely proposed for *in-silico perturbation*: predict a knockout's transcriptional effect from a frozen model by deleting the gene's token and reading the embedding response (the "delta"). Evaluating such predictions is error-prone, because apparent signal is easily manufactured by confounds. This repository provides reusable, confound-aware checks for that evaluation.
