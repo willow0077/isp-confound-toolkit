@@ -9,7 +9,7 @@ description = "A confound-diagnostic toolkit for judging when to trust foundatio
 license = {text = "MIT"}
 readme = "README.md"
 authors = [
-    {name = "isp-confound-toolkit authors"}
+    {name = "Ru Qiu", email = "qiuru77@gmail.com"}
 ]
 keywords = [
     "single-cell", "transcriptomics", "foundation-models", "in-silico-perturbation",

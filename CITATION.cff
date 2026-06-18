@@ -8,15 +8,10 @@ abstract: >-
   knockout response), a universal-responsiveness control, a tokenization-coverage
   gate, a library-size contamination check, and a de-circularization matrix.
 type: software
-# TODO(author): replace the placeholder below with the real author(s) and ORCID
-# before creating the tagged GitHub release that mints the Zenodo DOI. The names
-# here become the permanent, citable authors of the archived software record and
-# should match the manuscript author list.
 authors:
-  - name: "isp-confound-toolkit authors"
-    # family-names: ""
-    # given-names: ""
-    # orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Qiu"
+    given-names: "Ru"
+    orcid: "https://orcid.org/0009-0007-0021-7241"
 version: "0.1.0"
 date-released: "2026-06-18"
 license: MIT
