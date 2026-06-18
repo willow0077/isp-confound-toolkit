@@ -106,7 +106,7 @@ Place them under `./data/` (or set `ISP_DATA_ROOT` to a different directory).
 
 ## Reproducing from cached results (no GPU)
 
-The path-D per-cell response caches and DESeq2 outputs (approximately 440 MB) are too large to commit. They will be deposited on Zenodo upon preprint posting, and the DOI will be added on release. With those cached intermediates, every figure and increment test reproduces in pure NumPy - no Geneformer forward passes:
+The path-D per-cell response caches, DESeq2 outputs, figure inputs, and audit tables (approximately 465 MB) are too large to commit. They are available on Zenodo: https://doi.org/10.5281/zenodo.20729460. With those cached intermediates, every figure and increment test reproduces in pure NumPy - no Geneformer forward passes:
 
 ```bash
 # download the cache bundle from the Zenodo record above, then extract so that
@@ -128,7 +128,7 @@ python -m pytest -q
 
 ## Citation
 
-A methods preprint is in preparation; citation and the Zenodo data/code DOI will be added on posting. Please also cite Geneformer (Theodoris et al., *Nature* 2023) and scPerturb (Peidli et al., *Nat Methods* 2024).
+A methods preprint is in preparation; citation details will be added on posting. The reproduction bundle is available on Zenodo: https://doi.org/10.5281/zenodo.20729460. Please also cite Geneformer (Theodoris et al., *Nature* 2023) and scPerturb (Peidli et al., *Nat Methods* 2024).
 
 ## License
 

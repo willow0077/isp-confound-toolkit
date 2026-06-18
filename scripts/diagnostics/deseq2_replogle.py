@@ -82,8 +82,8 @@ def build_universal(adata, var_eids):
     lfc = np.log2(norm + 1) - logctrl[None, :]      # [perts, genes]
     nonctrl = [i for i, n in enumerate(names) if n != "control"]
     universal_abs = np.abs(lfc[nonctrl]).mean(0)
-    np.savez_compressed(UNIV, eids=eids, universal_abs=universal_abs,
-                        names=np.array(names), lfc=lfc.astype(np.float32))
+    np.savez_compressed(UNIV, eids=eids.astype(str), universal_abs=universal_abs,
+                        names=np.array(names, dtype=str), lfc=lfc.astype(np.float32))
     log.info(f"  universal-responsiveness cache: {UNIV} ({len(nonctrl)} perturbations)")
     return eids, universal_abs, {n: lfc[i] for i, n in enumerate(names)}
 
@@ -95,7 +95,7 @@ def main():
 
     # -- universal responsiveness (reuse cache) --
     if UNIV.exists():
-        u = np.load(UNIV, allow_pickle=True)
+        u = np.load(UNIV, allow_pickle=False)
         eids_u, universal_abs = u["eids"], u["universal_abs"]
         sf_lfc = {n: u["lfc"][i] for i, n in enumerate(u["names"])}
         log.info(f"  loaded universal-responsiveness cache ({UNIV})")
@@ -168,7 +168,7 @@ def main():
     cache = CACHEDIR / f"{GENE}_cache.npz"
     if not cache.exists():
         log.error(f"  cache not found: {cache} (path-D cache incomplete)"); return
-    d = np.load(cache, allow_pickle=True)
+    d = np.load(cache, allow_pickle=False)
     g, cp, cs = d["gene"], d["cellpos"], d["cos"]; n = int(d["n_valid"])
     uniq = np.unique(g); t2c = {t: i for i, t in enumerate(uniq)}
     C = np.full((n, len(uniq)), np.nan, np.float32); C[cp, np.array([t2c[t] for t in g])] = cs
@@ -204,7 +204,7 @@ def main():
     log.info(f"  [saliency] baseline[universal,WT] {r_sb:+.4f} -> +delta {r_sf:+.4f} (increment {r_sf-r_sb:+.4f})")
 
     np.savez_compressed(OUTDIR / f"{GENE}_replogle_deseq2.npz",
-                        gene_deseq=gene_deseq, eids=eids,
+                        gene_deseq=gene_deseq, eids=eids.astype(str),
                         r_wt=r_wt, r_dw=r_dw, incr=r_dw - r_wt,
                         sal_incr=r_sf - r_sb, n_rep=n_gene_rep)
     verdict = "~0: the negative conclusion reproduces on Replogle" if abs(r_dw - r_wt) < 0.03 else "WARNING: increment is significant, re-check"

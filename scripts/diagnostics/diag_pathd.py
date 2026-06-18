@@ -28,7 +28,7 @@ CACHE = Path("benchmark_output/pathd_cache/CCND1_cache.npz")
 
 
 def main():
-    d = np.load(CACHE, allow_pickle=True)
+    d = np.load(CACHE, allow_pickle=False)
     gene, cellpos, cos, proj = d["gene"], d["cellpos"], d["cos"], d["proj"]
     n_valid = int(d["n_valid"])
     gt_map = {int(t): float(f) for t, f in zip(d["gt_tokens"], d["gt_fc"])}

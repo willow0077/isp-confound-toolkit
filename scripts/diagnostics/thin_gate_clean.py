@@ -50,7 +50,7 @@ def main():
     gene2id = {k: v for k, v in tokd.items() if not str(k).startswith("<")}
     id2eid = {v: k for k, v in gene2id.items()}
 
-    d = np.load(CACHE, allow_pickle=True)
+    d = np.load(CACHE, allow_pickle=False)
     gene, cellpos, cos, proj = d["gene"], d["cellpos"], d["cos"], d["proj"]
     n = int(d["n_valid"])
     raw_gt = {int(t): float(f) for t, f in zip(d["gt_tokens"], d["gt_fc"])}
@@ -61,7 +61,7 @@ def main():
     mag_by = {int(t): m for t, m in zip(uniq, np.nanmean(1 - C, 0))}
     proj_by = {int(t): p for t, p in zip(uniq, np.nanmean(P, 0))}
 
-    dq = np.load(DESEQ, allow_pickle=True)
+    dq = np.load(DESEQ, allow_pickle=False)
     eid2deseq = {eid: v for eid, v in zip(dq["var_eids"], dq["ccnd1_deseq"]) if np.isfinite(v)}
 
     # common gene set: cache ∩ DESeq2 ∩ raw (same protocol as nonlinear_seal)

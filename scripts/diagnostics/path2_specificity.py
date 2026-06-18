@@ -100,7 +100,7 @@ def main():
     gene2id = {k: v for k, v in tokd.items() if not str(k).startswith("<")}
     eid2col = {eid: i for i, eid in enumerate(var_eids)}
 
-    d = np.load(CACHE, allow_pickle=True)
+    d = np.load(CACHE, allow_pickle=False)
     gene, cellpos, cos = d["gene"], d["cellpos"], d["cos"]
     n = int(d["n_valid"])
     uniq = np.unique(gene); t2c = {t: i for i, t in enumerate(uniq)}

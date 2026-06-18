@@ -3,7 +3,7 @@ import numpy as np
 from scipy.stats import pearsonr
 import warnings; warnings.filterwarnings("ignore")
 
-d = np.load("benchmark_output/pathd_cache/CCND1_cache.npz", allow_pickle=True)
+d = np.load("benchmark_output/pathd_cache/CCND1_cache.npz", allow_pickle=False)
 gene, cellpos, cos, proj = d["gene"], d["cellpos"], d["cos"], d["proj"]
 n = int(d["n_valid"])
 gt = {int(t): float(f) for t, f in zip(d["gt_tokens"], d["gt_fc"])}

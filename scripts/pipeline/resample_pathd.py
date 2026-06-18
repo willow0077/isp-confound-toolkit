@@ -39,7 +39,7 @@ def reps_for(n):
 
 def load_cache(npz_path):
     """Load the cache, rebuild dense cos_mat / proj_mat [n_valid, n_genes] (NaN-filled) + ground truth."""
-    d = np.load(npz_path, allow_pickle=True)
+    d = np.load(npz_path, allow_pickle=False)
     gene = d["gene"]; cellpos = d["cellpos"]; cos = d["cos"]; proj = d["proj"]
     n_valid = int(d["n_valid"])
     gt_tokens = d["gt_tokens"]; gt_fc = d["gt_fc"]

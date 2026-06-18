@@ -66,7 +66,7 @@ def main():
     gene2id = {k: v for k, v in tokd.items() if not str(k).startswith("<")}
     id2eid = {v: k for k, v in gene2id.items()}
 
-    d = np.load(CACHE, allow_pickle=True)
+    d = np.load(CACHE, allow_pickle=False)
     gene, cellpos, cos = d["gene"], d["cellpos"], d["cos"]
     n = int(d["n_valid"])
     raw_gt = {int(t): float(f) for t, f in zip(d["gt_tokens"], d["gt_fc"])}   # raw-count log2fc
@@ -77,7 +77,7 @@ def main():
     rich_tokens, mean_delta, mean_wt = d["rich_tokens"], d["mean_delta"], d["mean_wt"]
     rd = {int(t): i for i, t in enumerate(rich_tokens)}
 
-    dq = np.load(DESEQ, allow_pickle=True)
+    dq = np.load(DESEQ, allow_pickle=False)
     eid2deseq = {eid: v for eid, v in zip(dq["var_eids"], dq["ccnd1_deseq"]) if np.isfinite(v)}
 
     rows = []

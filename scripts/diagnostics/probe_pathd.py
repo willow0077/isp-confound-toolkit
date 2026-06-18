@@ -54,7 +54,7 @@ def main():
     if not CACHE.exists():
         log.error(f"cache not found: {CACHE} (may still be running)")
         return
-    d = np.load(CACHE, allow_pickle=True)
+    d = np.load(CACHE, allow_pickle=False)
     if "mean_delta" not in d:
         log.error("this cache has no rich features (old cache); re-run with the current cache_pathd.py")
         return

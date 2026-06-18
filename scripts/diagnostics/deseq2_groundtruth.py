@@ -152,7 +152,7 @@ def main():
     gene2id = {k: v for k, v in tokd.items() if not str(k).startswith("<")}
     eid2col = {eid: i for i, eid in enumerate(var_eids)}
 
-    d = np.load(CACHE, allow_pickle=True)
+    d = np.load(CACHE, allow_pickle=False)
     gene, cellpos, cos = d["gene"], d["cellpos"], d["cos"]
     n = int(d["n_valid"])
     uniq = np.unique(gene); t2c = {t: i for i, t in enumerate(uniq)}
@@ -208,7 +208,7 @@ def main():
 
     np.savez_compressed(OUTDIR / "ccnd1_deseq2.npz",
                         ccnd1_deseq=ccnd1_deseq, universal_abs=universal_abs,
-                        var_eids=var_eids, ccnd1_sizefactor=ccnd1_sf)
+                        var_eids=var_eids.astype(str), ccnd1_sizefactor=ccnd1_sf)
     log.info(f"\nresult saved: {OUTDIR/'ccnd1_deseq2.npz'}")
     if abs(r_dw - r_wt) < 0.03:
         log.info("-> delta increment still ~0 on a DESeq2-grade target: the negative conclusion survives primary recomputation")

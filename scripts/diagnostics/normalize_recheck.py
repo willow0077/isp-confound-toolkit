@@ -84,7 +84,7 @@ def main():
         if t is not None:
             gt[int(t)] = float(fc)
 
-    d = np.load(CACHE, allow_pickle=True)
+    d = np.load(CACHE, allow_pickle=False)
     gene, cellpos, cos, proj = d["gene"], d["cellpos"], d["cos"], d["proj"]
     n = int(d["n_valid"])
     uniq = np.unique(gene); t2c = {t: i for i, t in enumerate(uniq)}

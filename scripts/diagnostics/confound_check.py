@@ -54,7 +54,7 @@ def log2fc(adata, ko_gene):
 def main():
     # -- Check 1: decompose the readout -------------------------
     log.info("===== Check 1: WT-alone vs delta-alone (CCND1 cache) =====")
-    d = np.load(CACHE, allow_pickle=True)
+    d = np.load(CACHE, allow_pickle=False)
     gene, cellpos, cos, proj = d["gene"], d["cellpos"], d["cos"], d["proj"]
     n = int(d["n_valid"])
     gt = {int(t): float(f) for t, f in zip(d["gt_tokens"], d["gt_fc"])}

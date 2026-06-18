@@ -26,7 +26,7 @@ Geneformer source/weights are third-party assets and are not redistributed here.
 
 ## Large Intermediate Files
 
-Large generated artifacts are not intended for Git. They will be deposited on Zenodo upon preprint posting, including:
+Large generated artifacts are not intended for Git. They are available on Zenodo at https://doi.org/10.5281/zenodo.20729460, including:
 
 | Artifact class | Example local path | Purpose |
 |---|---|---|
@@ -34,7 +34,7 @@ Large generated artifacts are not intended for Git. They will be deposited on Ze
 | DESeq2 outputs | `benchmark_output/deseq2/*_replogle_deseq2.npz` | primary target and increment-test outputs |
 | validation outputs | `benchmark_output/pathd_validation.csv` | path-D vs official engine validation |
 
-The Zenodo DOI will be added upon release.
+The Zenodo bundle restores the cached intermediate files under `benchmark_output/` when extracted at the repository root.
 
 The small curated figure-input CSVs — `results/data/token_coverage.csv`, `results/data/CCND1_curve_main.csv`, `results/data/CCND1_curve_abl.csv` — are **committed** to this repository (not Zenodo), so Figure 3 reproduces from a clean checkout.
 

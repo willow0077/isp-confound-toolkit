@@ -8,11 +8,14 @@ Reproduces the per-gene cosine of Geneformer's InSilicoPerturber (cls_and_gene, 
   CosineSimilarity(dim=2) position-wise -> one per-cell cosine per affected gene
 
 Validation criterion:
-  for each affected gene of CD274, self-computed mean cosine vs stats.csv Cosine_sim_mean
-  require Pearson r > 0.99 and max absolute error < 0.01
-  and check for systematic offset (slope / intercept)
+  for each affected gene, self-computed mean cosine vs stats.csv Cosine_sim_mean.
+  Publication-grade gate: reproduce the official engine to r = 1.000000
+  (r > 0.999999, max abs error < 1e-5; observed ~3e-7). A loose gate
+  (r > 0.99, err < 0.01) is kept as a lower-bound warning. Also check for a
+  systematic offset (slope / intercept).
 """
 
+import argparse
 import logging
 import sys
 import pickle
@@ -32,14 +35,43 @@ logging.basicConfig(
 log = logging.getLogger("validate")
 
 MODEL_DIR = "Geneformer/Geneformer-V2-104M"
-TOK_PATH = "benchmark_output/CD274/tokenized/tokenized.dataset"
-STATS_CSV = "benchmark_output/CD274/perturb_output/sample_0/stats.csv"
-TARGET_GENE = "CD274"
-TARGET_EID = "ENSG00000120217"
+
+# Known targets' Ensembl IDs (symbol -> EID). Other targets can be passed via --eid.
+KNOWN_EIDS = {"CD274": "ENSG00000120217"}
+
+# Publication-grade precision criterion (manuscript cites: r = 1.000000, max abs err 3e-7).
+# This is the machine precision to which path-D's self-computed per-cell cosine must
+# reproduce the official engine.
+PUBLISHED_R_MIN = 0.999999     # r rounds to 1.000000 at 6 decimals
+PUBLISHED_MAXERR = 1e-5        # observed ~3e-7, with ample margin for numerical wobble
+# Old loose gate (kept as a lower-bound warning line)
+LOOSE_R_MIN = 0.99
+LOOSE_MAXERR = 0.01
+
+
+def parse_args():
+    p = argparse.ArgumentParser(description="path-D machine-precision validation (vs official InSilicoPerturber)")
+    p.add_argument("target", nargs="?", default="CD274",
+                   help="target gene symbol (default CD274). Requires existing benchmark_output/<target>/ tokenized + stats.csv")
+    p.add_argument("--eid", default=None, help="target gene Ensembl ID (optional for known targets)")
+    p.add_argument("--artifact", default="benchmark_output/pathd_validation.csv",
+                   help="per-gene comparison table output path (machine-precision evidence artifact)")
+    return p.parse_args()
 
 
 def main():
     import torch
+
+    args = parse_args()
+    TARGET_GENE = args.target
+    TARGET_EID = args.eid or KNOWN_EIDS.get(TARGET_GENE)
+    if TARGET_EID is None:
+        log.error(f"unknown Ensembl ID for target '{TARGET_GENE}'; pass it with --eid")
+        return False
+    TOK_PATH = f"benchmark_output/{TARGET_GENE}/tokenized/tokenized.dataset"
+    STATS_CSV = f"benchmark_output/{TARGET_GENE}/perturb_output/sample_0/stats.csv"
+    ARTIFACT = args.artifact
+    log.info(f"target {TARGET_GENE} ({TARGET_EID}); tokenized={TOK_PATH}")
 
     # -- 1. load model + vocabulary -----------------------------
     log.info("Step 1: load the wrapper model")
@@ -154,9 +186,9 @@ def main():
     log.info("validation result")
     log.info("=" * 60)
     log.info(f"genes compared: {len(cmp)}")
-    log.info(f"Pearson r       : {r:.6f}   (criterion > 0.99)")
-    log.info(f"max abs error   : {max_err:.6f} (criterion < 0.01)")
-    log.info(f"mean abs error  : {mean_err:.6f}")
+    log.info(f"Pearson r       : {r:.7f}   (publication-grade > {PUBLISHED_R_MIN})")
+    log.info(f"max abs error   : {max_err:.2e} (publication-grade < {PUBLISHED_MAXERR:.0e})")
+    log.info(f"mean abs error  : {mean_err:.2e}")
     log.info(f"linear fit official = {a:.5f} * my + {b:.6f}  (ideal a=1, b=0)")
 
     log.info("\n--- 8 genes with the largest error ---")
@@ -164,12 +196,21 @@ def main():
         ["affected_eid", "my_mean", "official_mean", "abs_err", "n_cells"]
     ].to_string(index=False))
 
-    passed = (r > 0.99) and (max_err < 0.01)
-    log.info("\n" + ("PASS: path-D is usable" if passed
-                     else "FAIL: investigate the source of the discrepancy (see linear fit a/b)"))
-    cmp.to_csv("benchmark_output/pathd_validation.csv", index=False)
-    log.info("per-gene comparison table saved to benchmark_output/pathd_validation.csv")
-    return passed
+    cmp.to_csv(ARTIFACT, index=False)
+    log.info(f"per-gene comparison table (machine-precision evidence artifact) saved to {ARTIFACT}")
+
+    # Publication-grade machine-precision gate: reproduce the official engine to r=1.000000, max abs err ~3e-7
+    machine_precision = (r > PUBLISHED_R_MIN) and (max_err < PUBLISHED_MAXERR)
+    loose_ok = (r > LOOSE_R_MIN) and (max_err < LOOSE_MAXERR)
+    if machine_precision:
+        log.info(f"\nPASS (machine precision): r={r:.6f}, max abs err={max_err:.1e} "
+                 f"-> path-D reproduces the official engine to publication-grade precision (manuscript-cited values)")
+    elif loose_ok:
+        log.warning("\nWARNING: only the loose gate passed (r>0.99, err<0.01), not publication-grade machine precision -- "
+                    "do not cite r=1.000000; investigate the numerical source (see linear fit a/b)")
+    else:
+        log.error("\nFAIL: investigate the source of the discrepancy (see linear fit a/b)")
+    return machine_precision
 
 
 if __name__ == "__main__":
