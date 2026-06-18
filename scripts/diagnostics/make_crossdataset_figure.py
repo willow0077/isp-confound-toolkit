@@ -7,7 +7,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-OUT = "results/figures/crossdataset_figure.png"
+OUT = "results/figures/figure2_crossdataset.png"
 
 # Panel A: WT-alone vs WT+delta (DESeq2 target, held-out r)
 condA = ["Frangieh\nCCND1", "Replogle\nHSPA9", "Replogle\nSUPT6H",

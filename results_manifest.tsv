@@ -23,7 +23,7 @@ benchmark_output/deseq2/DHX15_replogle_deseq2.npz	DESeq2 output	scripts/diagnost
 benchmark_output/deseq2/GATA1_replogle_deseq2.npz	DESeq2 output	scripts/diagnostics/deseq2_replogle.py	Replogle GATA1 caveated increment test	deposited on Zenodo: https://doi.org/10.5281/zenodo.20729460
 results/figures/figure1_cautionary_case.png	figure	scripts/diagnostics/make_brief_figure.py	Manuscript Figure 1	upload with submission
 results/figures/figure1_cautionary_case.pdf	figure	scripts/diagnostics/make_brief_figure.py	Manuscript Figure 1 vector version	upload with submission
-results/figures/crossdataset_figure.png	figure	scripts/diagnostics/make_crossdataset_figure.py	Manuscript Figure 2	upload with submission
-results/figures/crossdataset_figure.pdf	figure	scripts/diagnostics/make_crossdataset_figure.py	Manuscript Figure 2 vector version	upload with submission
+results/figures/figure2_crossdataset.png	figure	scripts/diagnostics/make_crossdataset_figure.py	Manuscript Figure 2	upload with submission
+results/figures/figure2_crossdataset.pdf	figure	scripts/diagnostics/make_crossdataset_figure.py	Manuscript Figure 2 vector version	upload with submission
 results/figures/figure3_coverage_pathD.png	figure	scripts/diagnostics/make_fig3.py	Manuscript Figure 3	upload with submission
 results/figures/figure3_coverage_pathD.pdf	figure	scripts/diagnostics/make_fig3.py	Manuscript Figure 3 vector version	upload with submission

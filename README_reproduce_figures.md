@@ -19,7 +19,7 @@ Expected outputs:
 | Figure | PNG output | PDF output |
 |---|---|---|
 | Figure 1 | `results/figures/figure1_cautionary_case.png` | `results/figures/figure1_cautionary_case.pdf` |
-| Figure 2 | `results/figures/crossdataset_figure.png` | `results/figures/crossdataset_figure.pdf` |
+| Figure 2 | `results/figures/figure2_crossdataset.png` | `results/figures/figure2_crossdataset.pdf` |
 | Figure 3 | `results/figures/figure3_coverage_pathD.png` | `results/figures/figure3_coverage_pathD.pdf` |
 
 ## Panel-Level Provenance
@@ -30,8 +30,8 @@ Provenance inputs marked `benchmark_output/...` are Zenodo-deposited (not commit
 |---|---|---|---|---|---|
 | Figure 1A | `scripts/diagnostics/make_brief_figure.py` | top-level script | `benchmark_output/verify_logs/deseq2_groundtruth_rerun.log`; `benchmark_output/verify_logs/confound_full.log` (Zenodo) | `results/figures/figure1_cautionary_case.png` | R007, R008, R020-R023 |
 | Figure 1B | `scripts/diagnostics/make_brief_figure.py` | top-level script | `benchmark_output/verify_logs/probe_CCND1.log`; `benchmark_output/verify_logs/normrecheck.log`; `benchmark_output/verify_logs/path2.log` (Zenodo); `reported_numbers_source_table.csv` | `results/figures/figure1_cautionary_case.png` | R003-R006, R009-R010 |
-| Figure 2A | `scripts/diagnostics/make_crossdataset_figure.py` | top-level script | `benchmark_output/verify_logs/deseq2_groundtruth_rerun.log`; `benchmark_output/deseq2/*_replogle_deseq2.npz` (Zenodo) | `results/figures/crossdataset_figure.png` | R021-R023, R026-R030 |
-| Figure 2B | `scripts/diagnostics/make_crossdataset_figure.py` | top-level script | `reported_numbers_source_table.csv`; `benchmark_output/deseq2/*_replogle_deseq2.npz` (Zenodo); `scripts/diagnostics/nonlinear_seal.py` | `results/figures/crossdataset_figure.png` | R023-R030 |
+| Figure 2A | `scripts/diagnostics/make_crossdataset_figure.py` | top-level script | `benchmark_output/verify_logs/deseq2_groundtruth_rerun.log`; `benchmark_output/deseq2/*_replogle_deseq2.npz` (Zenodo) | `results/figures/figure2_crossdataset.png` | R021-R023, R026-R030 |
+| Figure 2B | `scripts/diagnostics/make_crossdataset_figure.py` | top-level script | `reported_numbers_source_table.csv`; `benchmark_output/deseq2/*_replogle_deseq2.npz` (Zenodo); `scripts/diagnostics/nonlinear_seal.py` | `results/figures/figure2_crossdataset.png` | R023-R030 |
 | Figure 3A | `scripts/diagnostics/make_fig3.py` | top-level script | `results/data/token_coverage.csv` | `results/figures/figure3_coverage_pathD.png` | R044-R046 |
 | Figure 3B | `scripts/diagnostics/make_fig3.py` | top-level script | `results/data/CCND1_curve_main.csv`; `results/data/CCND1_curve_abl.csv`; `benchmark_output/pathd_validation.csv` (Zenodo) | `results/figures/figure3_coverage_pathD.png` | R001-R002, R047 |
 
