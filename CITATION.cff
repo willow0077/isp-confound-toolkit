@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this toolkit, please cite it using the metadata below."
+title: "isp-confound-toolkit: confound-aware diagnostics for foundation-model in-silico perturbation predictions"
+abstract: >-
+  A confound-diagnostic toolkit for judging when to trust foundation-model
+  in-silico perturbation predictions, with Geneformer as a worked cautionary
+  case. Provides path-D (a machine-precision re-implementation of the per-cell
+  knockout response), a universal-responsiveness control, a tokenization-coverage
+  gate, a library-size contamination check, and a de-circularization matrix.
+type: software
+# TODO(author): replace the placeholder below with the real author(s) and ORCID
+# before creating the tagged GitHub release that mints the Zenodo DOI. The names
+# here become the permanent, citable authors of the archived software record and
+# should match the manuscript author list.
+authors:
+  - name: "isp-confound-toolkit authors"
+    # family-names: ""
+    # given-names: ""
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "0.1.0"
+date-released: "2026-06-18"
+license: MIT
+repository-code: "https://github.com/willow0077/isp-confound-toolkit"
+keywords:
+  - single-cell transcriptomics
+  - foundation models
+  - Geneformer
+  - in-silico perturbation
+  - perturbation prediction
+  - benchmarking
+  - confounding
+  - computational biology
+references:
+  - type: data
+    title: "isp-confound-toolkit reproduction bundle (cached intermediates)"
+    doi: "10.5281/zenodo.20729460"

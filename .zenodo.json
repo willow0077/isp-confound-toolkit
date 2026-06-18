@@ -1,0 +1,34 @@
+{
+  "upload_type": "software",
+  "title": "isp-confound-toolkit: confound-aware diagnostics for foundation-model in-silico perturbation predictions",
+  "description": "A confound-diagnostic toolkit for judging when to trust foundation-model in-silico perturbation predictions, with Geneformer as a worked cautionary case. Provides path-D (a machine-precision re-implementation of the per-cell knockout response, validated against the official InSilicoPerturber to Pearson r = 1.000000), a universal-responsiveness control, a tokenization-coverage gate, a library-size contamination check, and a de-circularization matrix.",
+  "license": "MIT",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "isp-confound-toolkit authors"
+    }
+  ],
+  "keywords": [
+    "single-cell transcriptomics",
+    "foundation models",
+    "Geneformer",
+    "in-silico perturbation",
+    "perturbation prediction",
+    "benchmarking",
+    "confounding",
+    "computational biology"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementedBy",
+      "identifier": "10.5281/zenodo.20729460",
+      "scheme": "doi"
+    },
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/willow0077/isp-confound-toolkit",
+      "scheme": "url"
+    }
+  ]
+}
