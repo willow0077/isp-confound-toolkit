@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "isp-confound-toolkit"
-version = "0.1.0"
+version = "0.1.1"
 description = "A confound-diagnostic toolkit for judging when to trust foundation-model in-silico perturbation predictions (path-D, universal-responsiveness, coverage gating, library-size and de-circularization checks), with Geneformer as a cautionary case"
 license = {text = "MIT"}
 readme = "README.md"
