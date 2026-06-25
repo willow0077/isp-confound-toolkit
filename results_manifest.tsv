@@ -2,7 +2,7 @@ path	type	origin_script	role	zenodo_status
 reported_numbers_source_table.csv	manuscript audit table	manual audit from logs/csv/npz	Reported numeric provenance; Supplementary Table S2 candidate	commit to Git
 references_claim_audit.csv	manuscript audit table	Crossref DOI/status/title checks	Reference and claim audit for recent 2025/2026 citations	commit to Git
 README_reproduce_figures.md	figure reproduction guide	manual audit	Panel-level figure provenance	commit to Git
-Supplementary_Methods_Audit.md	supplementary methods	manual audit	Primary vs exploratory evidence, methods defense	commit to Git
+Supplementary_Methods_Audit.md	repo audit note	manual audit	Primary vs exploratory evidence; NOT submitted (redundant with main Methods), kept in repo for transparency	commit to Git
 Supplementary_Table_S1_decircularization_matrix.md	supplementary table	benchmark_output/verify_logs/state_matrix_rerun.log	GATA1 de-circularization matrix	commit to Git
 benchmark_output/pathd_validation.csv	validation result	scripts/pipeline/validate_pathd.py	path-D official-engine validation	deposited on Zenodo: https://doi.org/10.5281/zenodo.20729460
 benchmark_output/pathd_cache/CCND1_cache.npz	large cache	scripts/pipeline/cache_pathd.py	Frangieh CCND1 path-D response cache	deposited on Zenodo: https://doi.org/10.5281/zenodo.20729460
